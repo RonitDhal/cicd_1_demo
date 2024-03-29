@@ -30,4 +30,8 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
- 
+    - name: Extract Spring Boot version
+      run: spring_boot_version=$(xmlstarlet sel -t -v "/project/parent/version" pom.xml)
+
+    - name: Extract Java version
+      run:  java - version
