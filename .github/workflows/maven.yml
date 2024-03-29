@@ -6,17 +6,17 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven Build
+name: Build and Push Docker Image
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -45,9 +45,4 @@ jobs:
       - name: Push Docker image to Docker Hub
         run: |
           docker push ronitdocker8917/springboot-images-demo:latest
-        working-directory: ${{ github.workspace }}
-
-      - name: Run Docker Container
-        run: |
-          docker run -d -p 8080:8080 ronitdocker8917/springboot-images-demo:latest
         working-directory: ${{ github.workspace }}
